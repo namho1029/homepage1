@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>자기 소개 웹사이트</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #a5bcde; 
+            }
+
+            header {
+                background-color: #000000;
+                color: #fff;
+                padding: 10px 0;
+                text-align: center;
+                position: relative; 
+            }
+
+            .name {
+                color: #7d9dcd;
+                position: absolute;
+                left: 20px;
+                font-size: 36px;
+                font-weight: bold;
+            }
+
+            .menu-button {
+                padding: 5px 30px;
+                border-radius: 10px;
+            }
+
+            .menu-button:hover {
+                background-color: #acacac;
+            }
+
+            nav {
+                padding-top: 10px;
+                display: none; 
+            }
+
+            nav ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center; 
+            }
+
+            nav ul li {
+                margin: 0 30px; 
+            }
+
+            nav ul li a {
+                color: #fff;
+                text-decoration: none;
+                display: flex; 
+                align-items: center; 
+            }
+
+            nav ul li a img {
+                margin-right: 8px; 
+            }
+
+            nav ul li a:hover {
+                color: #7d9dcd;
+            }
+
+            main {
+                padding: 20px;
+            }
+
+            main h1 {
+                color: #7d9dcd;
+            }
+
+            section {
+                display: none;
+                margin-bottom: 20px;
+                background-color: #fff;
+                color: #000000; 
+                padding: 20px;
+                border-radius: 8px;
+            }
+
+            section.active {
+                display: block;
+            }
+
+            .text-container {
+                display: flex;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .text-container img {
+                width: 10%; 
+                height: auto; 
+                margin-right: 20px; 
+                border-radius: 10px; 
+            }
+
+            footer {
+                background-color: #000000;
+                color: #fff;
+                text-align: center;
+                padding: 10px 0;
+                position: fixed;
+                width: 100%;
+                bottom: 0;
+            }
+
+            @media (max-width: 600px) {
+                main {
+                    min-height: 500px;
+                }
+
+                header {
+                    padding-bottom: 50px; 
+                }
+
+                .menu-button {
+                    display: block;
+                    position: absolute;
+                    right: 10px;
+                    top: 10px;
+                    background-color: #fff;
+                    color: #000000;
+                    border: none;
+                    padding: 10px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+
+                .menu-button:hover {
+                    background-color: #acacac;
+                }
+
+                nav {
+                    padding-top: 40px;
+                    padding-bottom: 0;
+                }
+                
+                nav ul {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                nav ul li {
+                    margin: 10px 0;
+                }
+
+                .text-container {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .text-container img {
+                    width: 50%; 
+                    height: auto; 
+                    margin: 0 0 20px 0; 
+                    border-radius: 8px; 
+                }
+
+                footer {
+                    position: static;
+                    bottom: 0;
+                }
+            }
+        </style> 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                function showSection(sectionId) {
+                    $('section').removeClass('active');
+                    $(sectionId).addClass('active').hide().fadeIn(1000); 
+                }
+
+                function handleHashChange() {
+                    var hash = window.location.hash || '#home';
+                    showSection(hash);
+                }
+
+                $('nav ul li a').click(function(event) {
+                    event.preventDefault();
+                    var targetSection = $(this).attr('href');
+                    window.location.hash = targetSection;
+                });
+
+                $(window).on('hashchange', handleHashChange);
+
+                handleHashChange(); 
+
+                $('.menu-button').click(function() {
+                    $('nav').slideToggle();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+            <span class="name">NAMHO KIM</span>
+            <button class="menu-button">☰ Menu</button>
+            <nav>
+                <ul>
+                    <li><a href="#home"><img src="https://img.icons8.com/?size=100&id=2797&format=png&color=FFFFFF" alt="Home Icon" width="16" height="16">Home</a></li>
+                    <li><a href="#interests"><img src="https://img.icons8.com/?size=100&id=123400&format=png&color=FFFFFF" alt="Interests Icon" width="16" height="16">Interests</a></li>
+                    <li><a href="#contact"><img src="https://img.icons8.com/?size=100&id=53435&format=png&color=FFFFFF" alt="Contact Icon" width="16" height="16">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section id="home" class="active">
+                <h1>Welcome to My Website</h1>
+                <hr></hr>
+                <div class="text-container">
+                    <img src="C:\Users\김남호\Downloads\KakaoTalk_20240530_105010969.jpg" alt="Profile Picture">
+                    <p>Hello, my name is Namho Kim and I am a second-year student in the Department of Computer Engineering at Kangwon National University.<br>
+                        I have a deep interest in AI, particularly in developing AI technologies for robotics. My goal is to create AI algorithms and models for autonomous robots, co-bots, and human-robot interaction systems. I am focusing on machine learning, deep learning, reinforcement learning, real-time data processing, sensor fusion, and robot vision.<br>
+                        To realize this dream, I have participated in hackathon competition where I used Python and deep learning for image recognition. In the competition, I developed an algorithm to detect whether a safety helmet is worn when using electric scooters. I utilized Convolutional Neural Networks (CNN) to create an accurate and efficient model. This experience has enhanced my practical AI development skills, and I aim to continue improving AI solutions in the future.</p>
+                </div>
+            </section>
+            
+            <section id="interests">
+                <h1>Interests</h1>
+                <hr>
+                <div class="text-container">
+                    <img src="C:\Users\김남호\Downloads\KakaoTalk_20240531_232916092.jpg" alt="Baseball Picture">
+                    <div>
+                        <h2>Baseball</h2>
+                        <p>I like watching baseball, and the team I support is the Kia Tigers. I started taking interest in baseball in the 5th grade of elementary school, and since then, I enjoy going to the baseball stadium with my friends and family every year.</p>
+                    </div>
+                </div>
+                <hr></hr>
+                <div class="text-container">
+                    <img src="https://i.namu.wiki/i/VoNKCUgMq6StR79Sb9Aazv0DN7_9zRmtt3PEX1q-V6mliOL1AHXBL32vETC2lwAJsJYvPbAxEKno-G73Go917g.webp" alt="Movie Picture">
+                    <div>
+                        <h2>Movie</h2>
+                        <p>I enjoy watching movies and my genre is science fiction. The movie I saw recently is called 'I Am Mother', and it's about a girl and a robot called 'Mother' who helps reproduce humanity after the extinction of the human race. After watching this movie, you will have ethical concerns about robots in the future.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="contact">
+                <h1>Contact</h1>
+                <hr>
+                <p>전화: 010-2124-2934</p>
+                <p>이메일: namu0072k@naver.com</p>
+                <p><a href="https://github.com/namho1029">GitHub</a></p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 NAMHO KIM. All rights reserved.</p>
+        </footer>
+    </body>
+</html>
